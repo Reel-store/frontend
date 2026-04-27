@@ -1,0 +1,7 @@
+Add filters in producst page 
+Add Figma or HTML support in themes
+
+Remove the product page Showing Page view button
+
+Add option to chnage the storefront name for the user and admin
+ 
