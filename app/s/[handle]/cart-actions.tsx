@@ -38,7 +38,7 @@ export function AddToCartButton({
   return (
     <button
       onClick={handleClick}
-      className={`flex items-center justify-center gap-1.5 font-semibold transition-all rounded-xl ${btnBg} ${btnText} ${
+      className={`flex items-center justify-center gap-1.5 font-semibold transition-all rounded-xl whitespace-nowrap flex-shrink-0 ${btnBg} ${btnText} ${
         fullWidth
           ? 'w-full py-3 px-4 text-sm'
           : 'text-xs px-3 py-1.5 rounded-lg gap-1'

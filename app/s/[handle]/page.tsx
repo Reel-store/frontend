@@ -269,7 +269,7 @@ export default async function StorefrontPage({ params }: { params: Promise<{ han
                   <Link
                     key={product.id}
                     href={`/s/${handle}/${product.id}`}
-                    className={`product-card rounded-2xl border overflow-hidden block ${t.cardBg} ${t.cardBorder} ${t.cardShadow} ${t.cardHover}`}
+                    className={`product-card rounded-2xl border overflow-hidden flex flex-col ${t.cardBg} ${t.cardBorder} ${t.cardShadow} ${t.cardHover}`}
                   >
                     {/* Image */}
                     <div className="aspect-square relative overflow-hidden">
@@ -294,7 +294,7 @@ export default async function StorefrontPage({ params }: { params: Promise<{ han
                     </div>
 
                     {/* Info */}
-                    <div className="p-3.5">
+                    <div className="p-3.5 flex flex-col flex-1">
                       <h3 className={`font-semibold text-sm leading-tight line-clamp-2 ${t.productTitleColor}`}>
                         {product.name}
                       </h3>
@@ -303,12 +303,12 @@ export default async function StorefrontPage({ params }: { params: Promise<{ han
                           {product.description}
                         </p>
                       )}
-                      <div className="flex items-center justify-between mt-2">
-                        <p className={`text-sm font-bold ${t.productPriceColor}`}>
+                      <div className="flex items-center justify-between mt-auto pt-2 gap-1">
+                        <p className={`text-sm font-bold min-w-0 truncate ${t.productPriceColor}`}>
                           ₹{Number(product.price).toLocaleString('en-IN')}
                         </p>
                         {isOutOfStock ? (
-                          <span className={`text-xs px-2 py-1 rounded-lg ${t.badgeBg} ${t.badgeText}`}>Sold out</span>
+                          <span className={`text-xs px-2 py-1 rounded-lg flex-shrink-0 ${t.badgeBg} ${t.badgeText}`}>Sold out</span>
                         ) : (
                           <AddToCartButton product={product} handle={handle} btnBg={t.btnBg} btnText={t.btnText} accentStyle={accentStyle} />
                         )}
