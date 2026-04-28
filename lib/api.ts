@@ -46,4 +46,9 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+export const earlyAccess = {
+  signup: (data: { name: string; email: string; instagram_handle?: string; message?: string }) =>
+    axiosInstance.post('/early_access', data),
+};
+
 export default axiosInstance;

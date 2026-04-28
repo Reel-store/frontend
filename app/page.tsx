@@ -86,16 +86,16 @@ export default function Home() {
 
           {/* CTAs */}
           <div className="landing-hero-zoom flex flex-col sm:flex-row gap-4 justify-center pt-4" style={{ animationDelay: '0.2s' }}>
+            <Link href="/early-access">
+              <Button size="lg" className="gap-2 w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-500 text-white border-0 hover:opacity-90">
+                <Star className="w-4 h-4" /> Get Early Access
+              </Button>
+            </Link>
             <Link href="/login">
-              <Button size="lg" className="gap-2 w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto">
                 Sign In <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
-            <a href="https://instagram.com/oriona.tech" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto">
-                <Instagram className="w-4 h-4" /> DM us to get started
-              </Button>
-            </a>
           </div>
 
           <p className="landing-hero-zoom text-sm text-muted-foreground" style={{ animationDelay: '0.3s' }}>
@@ -371,16 +371,16 @@ export default function Home() {
             DM us on Instagram. We set it up for you — free. Your store is live tonight.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://instagram.com/oriona.tech" target="_blank" rel="noopener noreferrer">
+            <Link href="/early-access">
               <Button size="lg" variant="secondary" className="gap-2 w-full sm:w-auto">
+                <Star className="w-4 h-4" /> Get Early Access
+              </Button>
+            </Link>
+            <a href="https://instagram.com/oriona.tech" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto border-background/30 text-background hover:bg-background/10">
                 <Instagram className="w-4 h-4" /> DM us on Instagram
               </Button>
             </a>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto border-background/30 text-background hover:bg-background/10">
-                Sign In <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
           </div>
           <p className="text-sm text-background/50">Free to set up · No commission · No hidden fees</p>
         </div>
