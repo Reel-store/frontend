@@ -14,6 +14,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import axiosInstance from '@/lib/api';
 import { useAuthStore } from '@/lib/store';
 import { useToast } from '@/hooks/use-toast';
+import { validateIndianPhone } from '@/lib/utils';
 import type { Creator } from '@/lib/types';
 
 export default function CreatorsPage() {
@@ -64,6 +65,12 @@ export default function CreatorsPage() {
   const handleCreate = async () => {
     setCreating(true);
     setCreateError('');
+    const phoneErr = validateIndianPhone(form.contact_phone);
+    if (phoneErr) {
+      setCreateError(`Contact Phone: ${phoneErr}`);
+      setCreating(false);
+      return;
+    }
     try {
       await axiosInstance.post('/admin/creators', form);
       setShowCreate(false);
@@ -187,7 +194,6 @@ export default function CreatorsPage() {
               { label: 'Storefront Name *', key: 'storefront_name', type: 'text', placeholder: 'My Store' },
               { label: 'Instagram Username', key: 'instagram_username', type: 'text', placeholder: 'username' },
               { label: 'Contact Email', key: 'contact_email', type: 'email', placeholder: 'contact@example.com' },
-              { label: 'Contact Phone', key: 'contact_phone', type: 'text', placeholder: '+91-9999999999' },
             ].map(({ label, key, type, placeholder }) => (
               <div key={key} className="space-y-1">
                 <Label>{label}</Label>
@@ -199,6 +205,16 @@ export default function CreatorsPage() {
                 />
               </div>
             ))}
+            {/* Contact Phone rendered separately for inline validation */}
+            <div className="space-y-1">
+              <Label>Contact Phone</Label>
+              <Input
+                type="text"
+                placeholder="9999999999"
+                value={form.contact_phone}
+                onChange={(e) => setForm({ ...form, contact_phone: e.target.value })}
+              />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowCreate(false)}>Cancel</Button>

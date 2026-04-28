@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ExternalLink, Eye, EyeOff, ShoppingBag, ChevronDown, ChevronUp, CheckCircle2 } from 'lucide-react';
 import axiosInstance from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
+import { validateIndianPhone } from '@/lib/utils';
 import { THEME_CATALOG, ThemeName, resolveTheme } from '@/app/s/[handle]/themes';
 
 const FONTS = [
@@ -27,6 +28,7 @@ export default function StorefrontThemePage() {
   const [showPreview, setShowPreview] = useState(true);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [figmaInput, setFigmaInput] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   // Parse whatever Figma gives — full <iframe> embed code or a bare URL
   const parseFigmaInput = (raw: string): string => {
@@ -99,6 +101,12 @@ export default function StorefrontThemePage() {
   };
 
   const handleSave = async () => {
+    const phoneErr = validateIndianPhone(form.contact_phone);
+    if (phoneErr) {
+      setPhoneError(phoneErr);
+      return;
+    }
+    setPhoneError('');
     setSaving(true);
     try {
       const data = new FormData();
@@ -183,8 +191,23 @@ export default function StorefrontThemePage() {
                 <Input value={form.instagram_profile_url} onChange={(e) => setForm({ ...form, instagram_profile_url: e.target.value })} placeholder="https://instagram.com/..." /></div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div><Label>Contact Phone</Label>
-                <Input value={form.contact_phone} onChange={(e) => setForm({ ...form, contact_phone: e.target.value })} placeholder="+91-9999999999" /></div>
+              <div>
+                <Label>Contact Phone</Label>
+                <Input
+                  value={form.contact_phone}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setForm({ ...form, contact_phone: val });
+                    if (phoneError) setPhoneError(validateIndianPhone(val) || '');
+                  }}
+                  onBlur={() => setPhoneError(validateIndianPhone(form.contact_phone) || '')}
+                  placeholder="9999999999"
+                  className={phoneError ? 'border-destructive focus-visible:ring-destructive' : ''}
+                />
+                {phoneError && (
+                  <p className="text-xs text-destructive mt-1">{phoneError}</p>
+                )}
+              </div>
               <div><Label>Contact Email</Label>
                 <Input value={form.contact_email} onChange={(e) => setForm({ ...form, contact_email: e.target.value })} placeholder="you@example.com" /></div>
             </div>
