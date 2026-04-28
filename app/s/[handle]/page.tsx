@@ -304,7 +304,7 @@ export default async function StorefrontPage({ params }: { params: Promise<{ han
                         </p>
                       )}
                       <div className="flex items-center justify-between mt-auto pt-2 gap-1">
-                        <p className={`text-sm font-bold min-w-0 truncate ${t.productPriceColor}`}>
+                        <p className={`text-sm font-bold flex-shrink-0 ${t.productPriceColor}`}>
                           ₹{Number(product.price).toLocaleString('en-IN')}
                         </p>
                         {isOutOfStock ? (
