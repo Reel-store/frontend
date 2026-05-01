@@ -51,4 +51,12 @@ export const earlyAccess = {
     axiosInstance.post('/early_access', data),
 };
 
+export const adminApi = {
+  getEarlySignups: () => axiosInstance.get('/admin/early_signups'),
+  updateEarlySignupStatus: (id: string, status: 'pending' | 'created') =>
+    axiosInstance.patch(`/admin/early_signups/${id}`, { status }),
+  getAuditLogs: (auditable_type?: string) =>
+    axiosInstance.get('/admin/audit_logs', { params: auditable_type ? { auditable_type } : {} }),
+};
+
 export default axiosInstance;

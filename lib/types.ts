@@ -118,3 +118,27 @@ export interface Order {
   };
   items: OrderItem[];
 }
+
+// ── Early Signups ─────────────────────────────────────────────────────────────
+
+export interface EarlySignup {
+  id: string;
+  name: string;
+  email: string;
+  instagram_handle?: string | null;
+  message?: string | null;
+  status: 'pending' | 'created';
+  created_at: string;
+}
+
+// ── Audit Logs ────────────────────────────────────────────────────────────────
+
+export interface AuditLog {
+  id: string;
+  action: 'create' | 'update' | 'destroy';
+  auditable_type: string;
+  auditable_id: string;
+  changes: Record<string, [unknown, unknown]> | null;
+  performed_by: { id: string; email: string } | null;
+  created_at: string;
+}
