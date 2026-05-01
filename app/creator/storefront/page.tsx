@@ -132,7 +132,7 @@ export default function StorefrontThemePage() {
       });
       toast({ title: 'Storefront saved!' });
     } catch {
-      toast({ title: 'Failed to save', variant: 'destructive' });
+      toast({ title: 'Failed to save', description: 'For help, email us at contact@orionatech.in', variant: 'destructive' });
     }
     setSaving(false);
   };

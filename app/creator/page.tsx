@@ -73,7 +73,10 @@ export default function CreatorPage() {
       {storefront?.status === 'suspended' && (
         <div className="flex items-center gap-3 p-4 bg-destructive/10 border border-destructive rounded-lg text-destructive">
           <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-          <span className="text-sm font-medium">Your storefront is currently suspended. Contact support.</span>
+          <span className="text-sm font-medium">
+            Your storefront is currently suspended. For any queries, please write to us at{' '}
+            <a href="mailto:contact@orionatech.in" className="underline font-semibold">contact@orionatech.in</a>.
+          </span>
         </div>
       )}
 

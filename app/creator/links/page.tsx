@@ -142,7 +142,10 @@ export default function LinksPage() {
           <DialogHeader><DialogTitle>Add Link</DialogTitle></DialogHeader>
           <div className="space-y-4 py-2">
             {saveError && (
-              <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">{saveError}</div>
+              <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
+                {saveError} For help, email us at{' '}
+                <a href="mailto:contact@orionatech.in" className="underline font-semibold">contact@orionatech.in</a>.
+              </div>
             )}
             <div className="space-y-1">
               <Label>Platform</Label>

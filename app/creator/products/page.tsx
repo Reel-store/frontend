@@ -119,13 +119,13 @@ export default function ProductsPage() {
         );
       }
     } catch {
-      toast({ title: 'Failed to delete image', variant: 'destructive' });
+      toast({ title: 'Failed to delete image', description: 'For help, email us at contact@orionatech.in', variant: 'destructive' });
     }
   };
 
   const handleSave = async () => {
     if (!form.name || !form.price) {
-      toast({ title: 'Name and price are required', variant: 'destructive' });
+      toast({ title: 'Name and price are required', description: 'For help, email us at contact@orionatech.in', variant: 'destructive' });
       return;
     }
     setSaving(true);
@@ -151,6 +151,7 @@ export default function ProductsPage() {
     } catch (err: any) {
       toast({
         title: err?.response?.data?.error?.join?.(', ') || 'Failed to save product',
+        description: 'For help, email us at contact@orionatech.in',
         variant: 'destructive',
       });
     }
@@ -163,7 +164,7 @@ export default function ProductsPage() {
       toast({ title: 'Product deleted' });
       load();
     } catch {
-      toast({ title: 'Failed to delete', variant: 'destructive' });
+      toast({ title: 'Failed to delete', description: 'For help, email us at contact@orionatech.in', variant: 'destructive' });
     }
     setConfirmDelete(null);
   };
