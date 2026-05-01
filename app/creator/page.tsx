@@ -53,7 +53,7 @@ export default function CreatorPage() {
     setIsSaving(false);
   };
 
-  const publicUrl = `${process.env.NEXT_APP_URL || 'http://localhost:3001'}/s/${storefront?.handle}`;
+  const publicUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/s/${storefront?.handle}`;
 
   const copyUrl = () => {
     navigator.clipboard.writeText(publicUrl);

@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ConfirmDialog } from '@/components/confirm-dialog';
 import axiosInstance from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
-import { validateIndianPhone } from '@/lib/utils';
+
 import type { Product } from '@/lib/types';
 
 const STATUS_COLORS: Record<string, string> = {
@@ -45,7 +45,6 @@ export default function ProductsPage() {
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [confirmDelete, setConfirmDelete] = useState<Product | null>(null);
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
-  const [phoneError, setPhoneError] = useState('');
 
   const filteredProducts = statusFilter === 'all'
     ? products
@@ -66,7 +65,6 @@ export default function ProductsPage() {
     setForm(EMPTY_FORM);
     setNewImages([]);
     setImagePreviews([]);
-    setPhoneError('');
     setShowForm(true);
   };
 
@@ -86,7 +84,6 @@ export default function ProductsPage() {
     });
     setNewImages([]);
     setImagePreviews([]);
-    setPhoneError('');
     setShowForm(true);
   };
 
@@ -131,12 +128,6 @@ export default function ProductsPage() {
       toast({ title: 'Name and price are required', variant: 'destructive' });
       return;
     }
-    const waErr = validateIndianPhone(form.whatsapp_number);
-    if (waErr) {
-      setPhoneError(waErr);
-      return;
-    }
-    setPhoneError('');
     setSaving(true);
     try {
       const data = new FormData();
@@ -381,24 +372,6 @@ export default function ProductsPage() {
                   </SelectContent>
                 </Select>
               </div>
-            </div>
-
-            <div>
-              <Label>WhatsApp Number</Label>
-              <Input
-                value={form.whatsapp_number}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setForm({ ...form, whatsapp_number: val });
-                  if (phoneError) setPhoneError(validateIndianPhone(val) || '');
-                }}
-                onBlur={() => setPhoneError(validateIndianPhone(form.whatsapp_number) || '')}
-                placeholder="9999999999"
-                className={phoneError ? 'border-destructive focus-visible:ring-destructive' : ''}
-              />
-              {phoneError && (
-                <p className="text-xs text-destructive mt-1">{phoneError}</p>
-              )}
             </div>
 
             <div>
