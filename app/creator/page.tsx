@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Copy, Check, AlertTriangle } from 'lucide-react';
 import axiosInstance from '@/lib/api';
 import type { Storefront } from '@/lib/types';
+import { CreatorGuideCard } from '@/components/creator-guide';
 
 export default function CreatorPage() {
   const [storefront, setStorefront] = useState<Storefront | null>(null);
@@ -69,6 +70,8 @@ export default function CreatorPage() {
         <h1 className="text-3xl font-bold text-foreground">My Store</h1>
         <p className="text-muted-foreground mt-1">Manage your storefront information</p>
       </div>
+
+      <CreatorGuideCard />
 
       {storefront?.status === 'suspended' && (
         <div className="flex items-center gap-3 p-4 bg-destructive/10 border border-destructive rounded-lg text-destructive">

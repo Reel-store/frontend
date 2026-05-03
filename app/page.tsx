@@ -7,6 +7,7 @@ import {
   Instagram, Palette, Package, Zap, Star,
   CheckCircle, Smartphone, TrendingUp, ShoppingCart, Mail,
 } from 'lucide-react';
+import { CreatorGuideSection } from '@/components/creator-guide';
 import Link from 'next/link';
 
 export default function Home() {
@@ -153,6 +154,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Creator Quick Start Guide ─────────────────────────────────────── */}
+      <div className="border-t border-border bg-secondary/40">
+        <CreatorGuideSection />
+      </div>
 
       {/* ── Core Features ────────────────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 py-24 space-y-16">
